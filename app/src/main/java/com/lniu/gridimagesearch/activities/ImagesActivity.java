@@ -10,6 +10,7 @@ import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
 
+import com.etsy.android.grid.StaggeredGridView;
 import com.lniu.gridimagesearch.R;
 import com.lniu.gridimagesearch.adapters.ImageResultsAdapter;
 import com.lniu.gridimagesearch.models.ImageResult;
@@ -26,7 +27,7 @@ import java.util.ArrayList;
 
 public class ImagesActivity extends ActionBarActivity {
     private EditText etQuery;
-    private GridView gvResults;
+    private StaggeredGridView gvResults;
     private ArrayList<ImageResult> imageResults;
     private ImageResultsAdapter aImagesAdapter;
 
@@ -42,7 +43,7 @@ public class ImagesActivity extends ActionBarActivity {
 
     private void setUpViews() {
         etQuery = (EditText) findViewById(R.id.etInput);
-        gvResults = (GridView) findViewById(R.id.gvResults);
+        gvResults = (StaggeredGridView) findViewById(R.id.gvResults);
         gvResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {

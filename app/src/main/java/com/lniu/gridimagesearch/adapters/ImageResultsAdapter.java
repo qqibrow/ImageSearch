@@ -1,10 +1,13 @@
 package com.lniu.gridimagesearch.adapters;
 
 import android.content.Context;
+import android.graphics.Point;
 import android.text.Html;
+import android.view.Display;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.widget.ArrayAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -30,11 +33,32 @@ public class ImageResultsAdapter extends ArrayAdapter<ImageResult> {
         if(convertView == null)
             convertView = LayoutInflater.from(getContext()).inflate(R.layout.item_image_result, parent, false);
         ImageView ivImage = (ImageView) convertView.findViewById(R.id.ivImage);
-        TextView tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
 
+
+        int screenWidth = getScreenWidth();
+
+        // We want two column images warp 90% of the screen.
+        int imageWidth = (int)(0.95f * screenWidth / 2.0f);
+
+        // Scale image height based on imageWidth.
+        int imageHeight = (int)(imageResult.getTbHeight() *
+                imageWidth / imageResult.getTbWidth() * 1.0f);
+
+        ivImage.getLayoutParams().width = imageWidth;
+        ivImage.getLayoutParams().height = imageHeight;
         ivImage.setImageResource(0);
         Picasso.with(getContext()).load(imageResult.getThumbUrl()).into(ivImage);
-        tvTitle.setText(Html.fromHtml(imageResult.getTitle()));
+
+        // TextView tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
+    //    tvTitle.setText(Html.fromHtml(imageResult.getTitle()));
         return convertView;
+    }
+
+    private int getScreenWidth() {
+        WindowManager wm = (WindowManager) getContext().getSystemService(Context.WINDOW_SERVICE);
+        Display display = wm.getDefaultDisplay();
+        Point size = new Point();
+        display.getSize(size);
+        return size.x;
     }
 }

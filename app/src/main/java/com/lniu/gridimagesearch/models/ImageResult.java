@@ -19,6 +19,9 @@ public class ImageResult implements Serializable {
             this.fullUrl = json.getString("url");
             int width = json.getInt("width");
             int height = json.getInt("height");
+            this.tbWidth = json.getInt("tbWidth");
+            this.tbHeight = json.getInt("tbHeight");
+
         } catch(JSONException e) {
             e.printStackTrace();
         }
@@ -47,5 +50,16 @@ public class ImageResult implements Serializable {
     private String fullUrl;
     private String thumbUrl;
     private String title;
+
+    public int getTbWidth() {
+        return tbWidth;
+    }
+
+    public int getTbHeight() {
+        return tbHeight;
+    }
+
+    int tbWidth;
+    int tbHeight;
 
 }
