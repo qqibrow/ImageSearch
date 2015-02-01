@@ -9,10 +9,12 @@ import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
 import android.widget.GridView;
+import android.widget.Toast;
 
 import com.etsy.android.grid.StaggeredGridView;
 import com.lniu.gridimagesearch.R;
 import com.lniu.gridimagesearch.adapters.ImageResultsAdapter;
+import com.lniu.gridimagesearch.listeners.EndlessScrollListener;
 import com.lniu.gridimagesearch.models.ImageResult;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
@@ -41,9 +43,52 @@ public class ImagesActivity extends ActionBarActivity {
         gvResults.setAdapter(aImagesAdapter);
     }
 
+    private void loadMore(int num) {
+        String query = etQuery.getText().toString();
+        AsyncHttpClient client = new AsyncHttpClient();
+        String url = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="
+                + query + "&rsz=8" + "&start=" + String.valueOf(num);
+        client.get(url, new JsonHttpResponseHandler() {
+
+            @Override
+            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
+                try {
+                    JSONArray results = response.getJSONObject("responseData")
+                            .getJSONArray("results");
+
+                    // Clear the results(in case its a new search)
+                    aImagesAdapter.addAll(ImageResult.fromJsonArray(results));
+
+                }catch(JSONException e) {
+                    e.printStackTrace();
+                }
+
+            }
+        });
+    }
+
     private void setUpViews() {
         etQuery = (EditText) findViewById(R.id.etInput);
         gvResults = (StaggeredGridView) findViewById(R.id.gvResults);
+
+        gvResults.setOnScrollListener(new EndlessScrollListener() {
+            @Override
+            public void onLoadMore(int page, int totalItemsCount) {
+                // Triggered only when new data needs to be appended to the list
+                // Add whatever code is needed to append new items to your AdapterView
+                Toast.makeText(ImagesActivity.this, String.format("onLoadMore called with " +
+                        "totalItemsCount %d, call %d", totalItemsCount, (totalItemsCount / 8) * 8)
+                        , Toast.LENGTH_SHORT).show();
+                if(totalItemsCount > 56) {
+                    Toast.makeText(ImagesActivity.this,"Cannot load more", Toast.LENGTH_SHORT).show();
+                } else {
+                    loadMore((totalItemsCount / 8) * 8);
+                }
+
+            }
+        });
+
+
         gvResults.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -85,7 +130,7 @@ public class ImagesActivity extends ActionBarActivity {
         String query = etQuery.getText().toString();
         AsyncHttpClient client = new AsyncHttpClient();
         String url = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="
-                + query + "&rsz=8";
+                + query + "&rsz=1";
         client.get(url, new JsonHttpResponseHandler() {
 
             @Override

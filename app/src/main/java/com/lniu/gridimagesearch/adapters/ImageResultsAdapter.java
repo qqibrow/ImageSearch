@@ -50,7 +50,7 @@ public class ImageResultsAdapter extends ArrayAdapter<ImageResult> {
         Picasso.with(getContext()).load(imageResult.getThumbUrl()).into(ivImage);
 
         // TextView tvTitle = (TextView) convertView.findViewById(R.id.tvTitle);
-    //    tvTitle.setText(Html.fromHtml(imageResult.getTitle()));
+        // tvTitle.setText(Html.fromHtml(imageResult.getTitle()));
         return convertView;
     }
 
