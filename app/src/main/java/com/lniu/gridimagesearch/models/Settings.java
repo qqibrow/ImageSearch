@@ -1,8 +1,5 @@
 package com.lniu.gridimagesearch.models;
 
-import java.lang.reflect.Array;
-import java.lang.reflect.Type;
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

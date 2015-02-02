@@ -47,4 +47,6 @@ public class ImageDisplayActivity extends ActionBarActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
 }

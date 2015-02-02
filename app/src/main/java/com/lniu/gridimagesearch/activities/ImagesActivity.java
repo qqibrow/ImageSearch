@@ -1,6 +1,7 @@
 package com.lniu.gridimagesearch.activities;
 
 import android.content.Intent;
+import android.support.v4.app.FragmentManager;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
@@ -8,12 +9,12 @@ import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.EditText;
-import android.widget.GridView;
 import android.widget.Toast;
 
 import com.etsy.android.grid.StaggeredGridView;
 import com.lniu.gridimagesearch.R;
 import com.lniu.gridimagesearch.adapters.ImageResultsAdapter;
+import com.lniu.gridimagesearch.dialogs.SettingsDialog;
 import com.lniu.gridimagesearch.listeners.EndlessScrollListener;
 import com.lniu.gridimagesearch.models.ImageResult;
 import com.loopj.android.http.AsyncHttpClient;
@@ -120,10 +121,17 @@ public class ImagesActivity extends ActionBarActivity {
 
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
+            showEditDialog();
             return true;
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void showEditDialog() {
+        FragmentManager fm = getSupportFragmentManager();
+        SettingsDialog editNameDialog = SettingsDialog.newInstance("Settings");
+        editNameDialog.show(fm, "fragment_edit_name");
     }
 
     public void onImageSearch(View view) {
