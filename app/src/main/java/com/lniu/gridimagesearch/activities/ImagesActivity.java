@@ -81,8 +81,10 @@ public class ImagesActivity extends ActionBarActivity {
                         "totalItemsCount %d, call %d", totalItemsCount, (totalItemsCount / 8) * 8)
                         , Toast.LENGTH_SHORT).show();
                 if(totalItemsCount > 56) {
-                    Toast.makeText(ImagesActivity.this,"Cannot load more", Toast.LENGTH_SHORT).show();
-                } else {
+                    Toast.makeText(ImagesActivity.this,
+                            "Cannot load more with" + String.valueOf(totalItemsCount),
+                            Toast.LENGTH_SHORT).show();
+                } else  {
                     loadMore((totalItemsCount / 8) * 8);
                 }
 
@@ -135,28 +137,7 @@ public class ImagesActivity extends ActionBarActivity {
     }
 
     public void onImageSearch(View view) {
-        String query = etQuery.getText().toString();
-        AsyncHttpClient client = new AsyncHttpClient();
-        String url = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="
-                + query + "&rsz=1";
-        client.get(url, new JsonHttpResponseHandler() {
-
-            @Override
-            public void onSuccess(int statusCode, Header[] headers, JSONObject response) {
-                try {
-                    JSONArray results = response.getJSONObject("responseData")
-                            .getJSONArray("results");
-
-                    // Clear the results(in case its a new search)
-                    imageResults.clear();
-                    aImagesAdapter.addAll(ImageResult.fromJsonArray(results));
-
-                }catch(JSONException e) {
-                    e.printStackTrace();
-                }
-
-            }
-        });
-
+        imageResults.clear();
+        loadMore(0);
     }
 }
