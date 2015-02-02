@@ -2,13 +2,15 @@ package com.lniu.gridimagesearch.activities;
 
 import android.content.Intent;
 import android.support.v4.app.FragmentManager;
+import android.support.v4.view.MenuItemCompat;
 import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
+import android.support.v7.widget.SearchView;
 import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
-import android.widget.EditText;
 import android.widget.Toast;
 
 import com.etsy.android.grid.StaggeredGridView;
@@ -30,11 +32,11 @@ import java.util.ArrayList;
 
 
 public class ImagesActivity extends ActionBarActivity {
-    private EditText etQuery;
     private StaggeredGridView gvResults;
     private ArrayList<ImageResult> imageResults;
     private ImageResultsAdapter aImagesAdapter;
-    private String query;
+    private String query = "";
+    private SearchView searchView;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -46,7 +48,6 @@ public class ImagesActivity extends ActionBarActivity {
     }
 
     private void loadMore(int num) {
-        String query = etQuery.getText().toString();
         AsyncHttpClient client = new AsyncHttpClient();
         String url = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="
                 + query + "&rsz=8" + "&start=" + String.valueOf(num) + "&" + Settings.Instance().toString();
@@ -70,7 +71,6 @@ public class ImagesActivity extends ActionBarActivity {
     }
 
     private void setUpViews() {
-        etQuery = (EditText) findViewById(R.id.etInput);
         gvResults = (StaggeredGridView) findViewById(R.id.gvResults);
 
         gvResults.setOnScrollListener(new EndlessScrollListener() {
@@ -111,9 +111,31 @@ public class ImagesActivity extends ActionBarActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
-        getMenuInflater().inflate(R.menu.menu_images, menu);
-        return true;
+        //getMenuInflater().inflate(R.menu.menu_images, menu);
+        //return true;
+        MenuInflater inflater = getMenuInflater();
+        inflater.inflate(R.menu.menu_images, menu);
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchView = (SearchView) MenuItemCompat.getActionView(searchItem);
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                // perform query here
+                aImagesAdapter.clear();
+                ImagesActivity.this.query = query;
+                loadMore(0);
+                return true;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        return super.onCreateOptionsMenu(menu);
     }
+
+
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
