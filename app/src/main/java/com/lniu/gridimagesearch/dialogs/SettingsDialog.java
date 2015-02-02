@@ -69,8 +69,6 @@ public class SettingsDialog extends DialogFragment {
 
     @Override
     public void onDestroy() {
-        Toast.makeText(getActivity(), "onDestroy called", Toast.LENGTH_SHORT).show();
-
         // Get on the inputs
         String color = spnerColor.getSelectedItem().toString();
         String type = spnerType.getSelectedItem().toString();

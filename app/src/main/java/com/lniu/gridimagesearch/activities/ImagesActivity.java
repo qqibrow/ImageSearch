@@ -79,12 +79,12 @@ public class ImagesActivity extends ActionBarActivity {
             public void onLoadMore(int page, int totalItemsCount) {
                 // Triggered only when new data needs to be appended to the list
                 // Add whatever code is needed to append new items to your AdapterView
-                Toast.makeText(ImagesActivity.this, String.format("onLoadMore called with " +
-                        "totalItemsCount %d, call %d", totalItemsCount, (totalItemsCount / 8) * 8)
-                        , Toast.LENGTH_SHORT).show();
+//                Toast.makeText(ImagesActivity.this, String.format("onLoadMore called with " +
+//                        "totalItemsCount %d, call %d", totalItemsCount, (totalItemsCount / 8) * 8)
+//                        , Toast.LENGTH_SHORT).show();
                 if(totalItemsCount > 56) {
                     Toast.makeText(ImagesActivity.this,
-                            "Cannot load more with" + String.valueOf(totalItemsCount),
+                            "Cannot load more " + String.valueOf(totalItemsCount) + " images.",
                             Toast.LENGTH_SHORT).show();
                 } else  {
                     loadMore((totalItemsCount / 8) * 8);
@@ -138,7 +138,7 @@ public class ImagesActivity extends ActionBarActivity {
                 imm.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
 
                 searchItem.collapseActionView();
-                getSupportActionBar().setTitle(String.format("Result for: %s", query));
+                getSupportActionBar().setTitle(String.format("Results for: %s", query));
                 searchView.setQuery("", false);
                 loadMore(0);
                 return true;
