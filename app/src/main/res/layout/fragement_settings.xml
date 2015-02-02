@@ -91,5 +91,15 @@
         android:layout_alignParentEnd="true"
         android:hint="Input the site here" />
 
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="New Switch"
+        android:id="@+id/switch1"
+        android:layout_below="@+id/etSite"
+        android:layout_alignLeft="@+id/etSite"
+        android:layout_alignStart="@+id/etSite"
+        android:checked="false" />
+
 
 </RelativeLayout>

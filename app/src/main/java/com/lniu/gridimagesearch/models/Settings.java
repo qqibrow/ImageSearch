@@ -10,6 +10,8 @@ public class Settings {
 
     @Override
     public String toString() {
+        if(!turnedOn)
+            return "";
         StringBuilder sb = new StringBuilder();
         String sep = "";
         for(Setting s: settings) {
@@ -19,6 +21,10 @@ public class Settings {
             }
         }
         return sb.toString();
+    }
+
+    public boolean On() {
+        return turnedOn;
     }
 
     private class Setting {
@@ -46,6 +52,9 @@ public class Settings {
     }
 
     private static  Settings instance_ = new Settings();
+    private static boolean turnedOn = false;
+    public void TurnOn() {turnedOn = true;}
+    public void TurnOff() {turnedOn = false;}
     public static Settings Instance() {
         return instance_;
     }

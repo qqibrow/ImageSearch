@@ -34,7 +34,7 @@ public class ImagesActivity extends ActionBarActivity {
     private StaggeredGridView gvResults;
     private ArrayList<ImageResult> imageResults;
     private ImageResultsAdapter aImagesAdapter;
-
+    private String query;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -139,7 +139,7 @@ public class ImagesActivity extends ActionBarActivity {
 
     public void onImageSearch(View view) {
         Toast.makeText(this, Settings.Instance().toString(), Toast.LENGTH_SHORT).show();
-        imageResults.clear();
+        aImagesAdapter.clear();
         loadMore(0);
     }
 }

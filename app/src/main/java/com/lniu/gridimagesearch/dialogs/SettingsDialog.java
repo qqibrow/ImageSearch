@@ -8,6 +8,7 @@ import android.view.ViewGroup;
 import android.view.WindowManager;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.Switch;
 import android.widget.Toast;
 
 import com.lniu.gridimagesearch.R;
@@ -21,6 +22,7 @@ public class SettingsDialog extends DialogFragment {
     private Spinner spnerType;
     private Spinner spnerSize;
     private EditText etSite;
+    private Switch on;
 
     public SettingsDialog() {
         // Empty constructor required for DialogFragment
@@ -42,6 +44,9 @@ public class SettingsDialog extends DialogFragment {
         spnerType = (Spinner) view.findViewById(R.id.spnerType);
         spnerSize = (Spinner) view.findViewById(R.id.spnerSize);
         etSite = (EditText)view.findViewById(R.id.etSite);
+        on = (Switch)view.findViewById(R.id.switch1);
+        if(Settings.Instance().On())
+            on.setChecked(true);
         getDialog().setTitle("Advanced Filters");
         return view;
     }
@@ -55,6 +60,12 @@ public class SettingsDialog extends DialogFragment {
         String type = spnerType.getSelectedItem().toString();
         String size = spnerSize.getSelectedItem().toString();
         String site = etSite.getText().toString();
+        boolean turnedOn = on.isChecked();
+        if(turnedOn) {
+            Settings.Instance().TurnOn();
+        } else {
+            Settings.Instance().TurnOff();
+        }
         Settings.Instance().SetColor(color).SetSize(size).SetType(type).SetSite(site);
         super.onDestroy();
     }
