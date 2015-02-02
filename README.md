@@ -2,4 +2,4 @@
 Image Search Android Client
 
 ## Demo
-[![ScreenShot](https://raw.github.com/GabLeRoux/WebMole/master/ressources/WebMole_Youtube_Video.png)](https://www.youtube.com/watch?v=CeqxJ5kKXN8)
+[![ScreenShot](http://offers.square2marketing.com/hs-fs/hub/112139/file-571711539-jpg/images/demo-resized-600.jpg)](https://www.youtube.com/watch?v=CeqxJ5kKXN8)
