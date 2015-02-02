@@ -3,17 +3,39 @@
     android:layout_width="fill_parent" android:layout_height="fill_parent"
     android:padding="40dp"
     >
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textAppearance="?android:attr/textAppearanceLarge"
+        android:text="Advance"
+        android:id="@+id/tvAdvance"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_alignParentStart="true"
+        android:layout_marginBottom="20dp"/>
 
+    <Switch
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text=""
+        android:id="@+id/switch1"
+        android:checked="false"
+        android:layout_toRightOf="@id/tvAdvance"
+        android:layout_alignParentRight="true"
+        android:layout_alignParentEnd="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginBottom="20dp"
+        android:layout_marginLeft="37dp"
+        />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Image Size"
+        android:layout_below="@id/switch1"
         android:id="@+id/tvSize"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true" />
+/>
 
     <Spinner
         android:layout_width="wrap_content"
@@ -22,6 +44,7 @@
         android:entries="@array/size_array"
         android:layout_marginLeft="15dp"
         android:layout_toRightOf="@id/tvSize"
+        android:layout_below="@+id/switch1"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="20dp"/>
@@ -91,15 +114,7 @@
         android:layout_alignParentEnd="true"
         android:hint="Input the site here" />
 
-    <Switch
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="New Switch"
-        android:id="@+id/switch1"
-        android:layout_below="@+id/etSite"
-        android:layout_alignLeft="@+id/etSite"
-        android:layout_alignStart="@+id/etSite"
-        android:checked="false" />
+
 
 
 </RelativeLayout>
