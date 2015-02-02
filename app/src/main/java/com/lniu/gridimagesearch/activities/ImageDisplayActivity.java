@@ -4,15 +4,19 @@ import android.support.v7.app.ActionBarActivity;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.ImageView;
+import android.widget.ProgressBar;
 
 import com.lniu.gridimagesearch.R;
 import com.lniu.gridimagesearch.models.ImageResult;
+import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
 public class ImageDisplayActivity extends ActionBarActivity {
 
     ImageView ivFullImage;
+    ProgressBar progressBar;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,8 +24,22 @@ public class ImageDisplayActivity extends ActionBarActivity {
 
 
         ivFullImage = (ImageView) findViewById(R.id.ivFullImage);
+        progressBar = (ProgressBar) findViewById(R.id.progressBar);
+
         ImageResult imageResult = (ImageResult) getIntent().getSerializableExtra("result");
-        Picasso.with(this).load(imageResult.getFullUrl()).into(ivFullImage);
+        Picasso.with(this).load(imageResult.getFullUrl()).error(R.drawable.ic_action_error)
+                .into(ivFullImage, new Callback.EmptyCallback() {
+
+            @Override
+            public void onSuccess() {
+                progressBar.setVisibility(View.GONE);
+            }
+
+            @Override
+            public void onError() {
+                progressBar.setVisibility(View.GONE);
+            }
+        });
 
     }
 
