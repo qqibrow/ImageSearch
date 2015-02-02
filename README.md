@@ -14,7 +14,7 @@ Image Search Android Client
 6. User can scroll down “infinitely” to continue loading more image results (up to 8 pages)
 7. User can share an image to their friends or email it to themselves
 
-## Implementation details
+## Implementation Details
 1. [Actionbar Searchview](http://guides.codepath.com/android/Extended-ActionBar-Guide#adding-searchview-to-actionbar)
 2. [Sharing Content with Intents](http://guides.codepath.com/android/Sharing-Content-with-Intents), [PicassoDrawable cannot be cast to BitmapDrawable](https://github.com/square/picasso/issues/38)
 3. [Lightweight modal overlay as Advance Filter UI](http://guides.codepath.com/android/Using-DialogFragment)
