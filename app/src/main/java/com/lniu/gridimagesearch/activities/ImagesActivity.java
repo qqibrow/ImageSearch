@@ -136,6 +136,10 @@ public class ImagesActivity extends ActionBarActivity {
                 InputMethodManager imm = (InputMethodManager)getSystemService(
                         ImagesActivity.this.INPUT_METHOD_SERVICE);
                 imm.hideSoftInputFromWindow(searchView.getWindowToken(), 0);
+
+                searchItem.collapseActionView();
+                getSupportActionBar().setTitle(String.format("Result for: %s", query));
+                searchView.setQuery("", false);
                 loadMore(0);
                 return true;
             }
@@ -172,9 +176,11 @@ public class ImagesActivity extends ActionBarActivity {
         editNameDialog.show(fm, "fragment_edit_name");
     }
 
+    /* Replaced by the actionbar searchview.
     public void onImageSearch(View view) {
         Toast.makeText(this, Settings.Instance().toString(), Toast.LENGTH_SHORT).show();
         aImagesAdapter.clear();
         loadMore(0);
     }
+    */
 }
