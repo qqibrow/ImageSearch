@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.view.WindowManager;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Switch;
@@ -44,11 +45,27 @@ public class SettingsDialog extends DialogFragment {
         spnerType = (Spinner) view.findViewById(R.id.spnerType);
         spnerSize = (Spinner) view.findViewById(R.id.spnerSize);
         etSite = (EditText)view.findViewById(R.id.etSite);
+
         on = (Switch)view.findViewById(R.id.switch1);
-        if(Settings.Instance().On())
-            on.setChecked(true);
+        boolean filterOn = Settings.Instance().On();
+        on.setChecked(filterOn);
+        setEnabledWidgets(filterOn);
         getDialog().setTitle("Advanced Filters");
+
+        on.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                setEnabledWidgets(isChecked);
+            }
+        });
         return view;
+    }
+
+    private void setEnabledWidgets(boolean flag) {
+        spnerColor.setEnabled(flag);
+        spnerType.setEnabled(flag);
+        spnerSize.setEnabled(flag);
+        etSite.setEnabled(flag);
     }
 
     @Override

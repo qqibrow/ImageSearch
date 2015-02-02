@@ -5,34 +5,12 @@
     android:layout_height="match_parent"
     tools:context=".ImagesActivity">
 
-    <Button
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Enter"
-        android:onClick="onImageSearch"
-        android:id="@+id/btEnter"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
-
-    <EditText
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:id="@+id/etInput"
-        android:layout_alignParentTop="true"
-        android:layout_alignParentLeft="true"
-        android:layout_alignParentStart="true"
-        android:layout_toLeftOf="@+id/btEnter"
-        android:layout_toStartOf="@+id/btEnter"
-        android:layout_alignBottom="@+id/btEnter" />
-
     <com.etsy.android.grid.StaggeredGridView
-        android:layout_width="wrap_content"
+        android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         android:id="@+id/gvResults"
         app:item_margin="5dp"
         grid_paddingBottom="5dp"
-        android:layout_below="@+id/etInput"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
         android:layout_alignParentBottom="true"
