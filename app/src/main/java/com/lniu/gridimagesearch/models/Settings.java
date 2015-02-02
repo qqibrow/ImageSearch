@@ -31,13 +31,13 @@ public class Settings {
     }
     @Override
     public String toString() {
-        return String.format("%s&%s", name, value);
+        return String.format("%s=%s", name, value);
     }
         private String name;
         private String value;
     }
 
-    List<Setting> settings;
+    private static List<Setting> settings;
     private Settings() {
         settings = Arrays.asList(new Setting("as_sitesearch", ""), // site.
                                  new Setting("imgsz", ""),  // size
@@ -45,12 +45,12 @@ public class Settings {
                                  new Setting("imgtype", ""));  // type
     }
 
-    private Settings instance_ = new Settings();
-    public Settings Instance() {
+    private static  Settings instance_ = new Settings();
+    public static Settings Instance() {
         return instance_;
     }
 
-    public Settings SetValue(String key, String value) {
+    private Settings SetValue(String key, String value) {
         for(Setting s: settings) {
             if(s.name == key) {
                 s.value = value;
@@ -62,12 +62,12 @@ public class Settings {
 
 
 
-    public Settings SetSize(String size) {
+    public Settings SetSite(String size) {
         String key = "as_sitesearch";
         return SetValue(key, size);
     }
 
-    public Settings SetSite(String site) {
+    public Settings SetSize(String site) {
         String key = "imgsz";
         return SetValue(key, site);
     }

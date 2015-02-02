@@ -9,7 +9,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:textAppearance="?android:attr/textAppearanceLarge"
-        android:text="Large Text"
+        android:text="Image Size"
         android:id="@+id/tvSize"
         android:layout_alignParentTop="true"
         android:layout_alignParentLeft="true"
@@ -18,8 +18,8 @@
     <Spinner
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/sperSize"
-        android:entries="@array/color_array"
+        android:id="@+id/spnerSize"
+        android:entries="@array/size_array"
         android:layout_marginLeft="15dp"
         android:layout_toRightOf="@id/tvSize"
         android:layout_alignParentRight="true"
@@ -32,7 +32,7 @@
         android:textAppearance="?android:attr/textAppearanceLarge"
         android:text="Image Color"
         android:id="@+id/tvColor"
-        android:layout_below="@+id/sperSize"
+        android:layout_below="@+id/spnerSize"
         android:layout_alignParentLeft="true"
         android:layout_alignParentStart="true"
    />
@@ -42,8 +42,8 @@
         android:layout_height="wrap_content"
         android:id="@+id/spnerColor"
         android:entries="@array/color_array"
-        android:layout_below="@+id/sperSize"
-        android:layout_alignLeft="@+id/sperSize"
+        android:layout_below="@+id/spnerSize"
+        android:layout_alignLeft="@+id/spnerSize"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="20dp"/>
@@ -65,7 +65,7 @@
         android:id="@+id/spnerType"
         android:entries="@array/type_array"
         android:layout_below="@+id/spnerColor"
-        android:layout_alignLeft="@+id/sperSize"
+        android:layout_alignLeft="@+id/spnerSize"
         android:layout_alignParentRight="true"
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="20dp"/>
@@ -84,11 +84,12 @@
     <EditText
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:id="@+id/spnerSite"
+        android:id="@+id/etSite"
         android:layout_below="@+id/spnerType"
         android:layout_alignLeft="@+id/spnerType"
         android:layout_alignParentRight="true"
-        android:layout_alignParentEnd="true" />
+        android:layout_alignParentEnd="true"
+        android:hint="Input the site here" />
 
 
 </RelativeLayout>

@@ -17,6 +17,7 @@ import com.lniu.gridimagesearch.adapters.ImageResultsAdapter;
 import com.lniu.gridimagesearch.dialogs.SettingsDialog;
 import com.lniu.gridimagesearch.listeners.EndlessScrollListener;
 import com.lniu.gridimagesearch.models.ImageResult;
+import com.lniu.gridimagesearch.models.Settings;
 import com.loopj.android.http.AsyncHttpClient;
 import com.loopj.android.http.JsonHttpResponseHandler;
 
@@ -48,7 +49,7 @@ public class ImagesActivity extends ActionBarActivity {
         String query = etQuery.getText().toString();
         AsyncHttpClient client = new AsyncHttpClient();
         String url = "https://ajax.googleapis.com/ajax/services/search/images?v=1.0&q="
-                + query + "&rsz=8" + "&start=" + String.valueOf(num);
+                + query + "&rsz=8" + "&start=" + String.valueOf(num) + "&" + Settings.Instance().toString();
         client.get(url, new JsonHttpResponseHandler() {
 
             @Override
@@ -137,6 +138,7 @@ public class ImagesActivity extends ActionBarActivity {
     }
 
     public void onImageSearch(View view) {
+        Toast.makeText(this, Settings.Instance().toString(), Toast.LENGTH_SHORT).show();
         imageResults.clear();
         loadMore(0);
     }

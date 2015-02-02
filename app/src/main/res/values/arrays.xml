@@ -16,7 +16,7 @@
 
     <string-array name="size_array">
         <item>icon</item>
-        <item>small|medium|large|xlarge</item>
+        <item>small\|medium\|large\|xlarge</item>
         <item>xxlarge</item>
         <item>huge</item>
     </string-array>
